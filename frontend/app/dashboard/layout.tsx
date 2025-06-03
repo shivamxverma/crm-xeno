@@ -39,7 +39,7 @@ const Sidebar = () => {
   return (
     <motion.nav
       layout
-      className="sticky top-0 h-screen shrink-0 bg-gray-900 text-white p-4 shadow-lg"
+      className="sticky top-0 h-screen shrink-0 bg-gray-200 text-gray-800 p-4 shadow-lg"
       style={{
         width: open ? "280px" : "80px",
       }}
@@ -54,6 +54,8 @@ const Sidebar = () => {
           setSelected={setSelected}
           open={open}
           href="/dashboard"
+          activeColor="bg-indigo-500/20 text-indigo-600"
+          hoverColor="hover:from-indigo-500/10 hover:to-gray-300"
         />
         <Option
           Icon={FiUser}
@@ -62,6 +64,8 @@ const Sidebar = () => {
           setSelected={setSelected}
           open={open}
           href="/dashboard/customers"
+          activeColor="bg-teal-500/20 text-teal-600"
+          hoverColor="hover:from-teal-500/10 hover:to-gray-300"
         />
         <Option
           Icon={FiBox}
@@ -70,6 +74,8 @@ const Sidebar = () => {
           setSelected={setSelected}
           open={open}
           href="/dashboard/orders"
+          activeColor="bg-emerald-500/20 text-emerald-600"
+          hoverColor="hover:from-emerald-500/10 hover:to-gray-300"
         />
         <Option
           Icon={FaLessThan}
@@ -78,6 +84,8 @@ const Sidebar = () => {
           setSelected={setSelected}
           open={open}
           href="/dashboard/segment-rules"
+          activeColor="bg-purple-500/20 text-purple-600"
+          hoverColor="hover:from-purple-500/10 hover:to-gray-300"
         />
         <Option
           Icon={HiSpeakerphone}
@@ -86,6 +94,8 @@ const Sidebar = () => {
           setSelected={setSelected}
           open={open}
           href="/dashboard/campaign"
+          activeColor="bg-orange-500/20 text-orange-600"
+          hoverColor="hover:from-orange-500/10 hover:to-gray-300"
         />
         <Option
           Icon={HiSpeakerphone}
@@ -94,6 +104,8 @@ const Sidebar = () => {
           setSelected={setSelected}
           open={open}
           href="/dashboard/campaigns"
+          activeColor="bg-amber-500/20 text-amber-600"
+          hoverColor="hover:from-amber-500/10 hover:to-gray-300"
         />
         <Option
           Icon={FiLogOut}
@@ -105,6 +117,8 @@ const Sidebar = () => {
             logout();
             router.push("/");
           }}
+          activeColor="bg-red-500/20 text-red-600"
+          hoverColor="hover:from-red-500/10 hover:to-gray-300"
         />
       </div>
 
@@ -121,6 +135,8 @@ const Option = ({
   open,
   href,
   onClick,
+  activeColor,
+  hoverColor,
 }: {
   Icon: IconType;
   title: string;
@@ -129,6 +145,8 @@ const Option = ({
   open: boolean;
   href?: string;
   onClick?: () => void;
+  activeColor: string;
+  hoverColor: string;
 }) => {
   return (
     <>
@@ -137,9 +155,7 @@ const Option = ({
           layout
           onClick={onClick}
           className={`relative flex h-12 w-full items-center rounded-lg transition-all duration-300 ${
-            selected === title
-              ? "bg-red-500/20 text-red-400 shadow-md"
-              : "text-gray-300 hover:bg-gradient-to-r hover:from-red-500/10 hover:to-gray-800"
+            selected === title ? activeColor : `text-gray-600 ${hoverColor}`
           }`}
         >
           <motion.div
@@ -166,9 +182,7 @@ const Option = ({
             layout
             onClick={() => setSelected(title)}
             className={`relative flex h-12 w-full items-center rounded-lg transition-all duration-300 ${
-              selected === title
-                ? "bg-blue-500/20 text-blue-400 shadow-md"
-                : "text-gray-300 hover:bg-gradient-to-r hover:from-blue-500/10 hover:to-gray-800"
+              selected === title ? activeColor : `text-gray-600 ${hoverColor}`
             }`}
           >
             <motion.div
@@ -197,11 +211,11 @@ const Option = ({
 
 const TitleSection = ({ open }: { open: boolean }) => {
   return (
-    <div className="mb-4 border-b border-gray-700 pb-4">
+    <div className="mb-4 border-b border-gray-300 pb-4">
       <div className="flex items-center justify-center gap-2">
         <motion.div
           layout
-          className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent"
+          className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent"
         >
           CRM
         </motion.div>
@@ -221,12 +235,12 @@ const ToggleClose = ({
     <motion.button
       layout
       onClick={() => setOpen((pv) => !pv)}
-      className="absolute bottom-0 left-0 right-0 border-t border-gray-700 transition-all hover:bg-gray-800 p-3"
+      className="absolute bottom-0 left-0 right-0 border-t border-gray-300 transition-all hover:bg-gray-300 p-3"
     >
       <div className="flex items-center">
         <motion.div
           layout
-          className="grid size-12 place-content-center text-xl text-gray-300"
+          className="grid size-12 place-content-center text-xl text-gray-600"
         >
           <FiChevronsRight
             className={`transition-transform ${open && "rotate-180"}`}
@@ -238,7 +252,7 @@ const ToggleClose = ({
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-sm font-semibold text-gray-300"
+            className="text-sm font-semibold text-gray-600"
           >
             Hide
           </motion.span>

@@ -13,10 +13,10 @@ export default function Home() {
       }}
       description="Turn your concepts into powerful digital solutions with ease."
       ctaNode={<OAuthLogin/>}
-      bottomImage={{
-        light: "https://www.launchuicomponents.com/app-light.png",
-        dark: "https://www.launchuicomponents.com/app-dark.png",
-      }}
+      // bottomImage={{
+      //   light: "https://www.launchuicomponents.com/app-light.png",
+      //   dark: "https://www.launchuicomponents.com/app-dark.png",
+      // }}
       gridOptions={{
         angle: 65,
         opacity: 0.4,
